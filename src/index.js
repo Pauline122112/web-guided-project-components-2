@@ -92,7 +92,15 @@ function dogCardMaker({ imageURL, breed }) {
 //    * ON FAILURE: log the error to the console
 //    * IN ANY CASE: log "done" to the console
 axios.get(`https://dog.ceo/api/breed/mastiff/images/random/3`)
-  .then(response => console.log(response.data))
+  .then(response => {
+    console.log(response.data.message)
+    const dogCard = dogCardMaker({ imageURL: response.data.message[0], breed: 'Mastiff'})
+    entryPoint.appendChild(dogCard)
+    return dogCard
+  })
+  .then(dogCard => {
+    entryPoint.appendChild(dogCard)
+  })
   .catch(error => console.log(error.message))
   .finally(() => console.log('done'))
 
