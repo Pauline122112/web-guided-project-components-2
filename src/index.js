@@ -92,8 +92,14 @@ function dogCardMaker({ imageURL, breed }) {
 //    * ON SUCCESS: use the data to create dogCards and append them to the entry point
 //    * ON FAILURE: log the error to the console
 //    * IN ANY CASE: log "done" to the console
-axios.get(`https://dog.ceo/api/breed/mastiff/images/random/3`)
+
+//>>>>>>>>>>>>>>>>>>>>>>>gives three dog cards>>>>>>>>>>>>>>>>>>>>>>>>>>
+axios.get(`https://dog.ceo/api/breed/mastiff/images/randomMMMMMMM/3`)
   .then(response => {
+    //ONLY PLACE WHERE WE HAVE ACCESS TO THE IMAGE URLS FROM ENDPOINT
+    //ONLY PLACE WHERE WE HAVE ACCESS TO THE IMAGE URLS FROM ENDPOINT
+    //ONLY PLACE WHERE WE HAVE ACCESS TO THE IMAGE URLS FROM ENDPOINT
+    //ONLY PLACE WHERE WE HAVE ACCESS TO THE IMAGE URLS FROM ENDPOINT
     console.log('response body axios puts in "data" property', response.data)
     console.log('the array of dog images', response.data.message)
     const dogImageURLSArr = response.data.message
@@ -105,8 +111,11 @@ axios.get(`https://dog.ceo/api/breed/mastiff/images/random/3`)
   })
   
 .catch(err => {
+  console.log(err)
   debugger
 })
+//>>>>>>>>>>>>>>>>>>>>>>>gives three dog cards>>>>>>>>>>>>>>>>>>>>>>>>>>
+
 
 // // 👉 (OPTIONAL) TASK 6- Wrap the fetching operation inside a function `getDogs`
 // // that takes a breed and a count (of dogs)
