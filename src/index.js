@@ -1,6 +1,7 @@
 // Imports at the top of the file!
 // We never nest imports inside blocks of code!
 import axios from 'axios'
+import { breeds } from './breeds'
 
 // WE SELDOM DO THE FOLLOWING
 // WE SELDOM DO THE FOLLOWING
@@ -93,26 +94,58 @@ function dogCardMaker({ imageURL, breed }) {
 //    * IN ANY CASE: log "done" to the console
 axios.get(`https://dog.ceo/api/breed/mastiff/images/random/3`)
   .then(response => {
-    console.log(response.data.message)
-    const dogCard = dogCardMaker({ imageURL: response.data.message[0], breed: 'Mastiff'})
-    entryPoint.appendChild(dogCard)
-    return dogCard
+    console.log('response body axios puts in "data" property', response.data)
+    console.log('the array of dog images', response.data.message)
+    const dogImageURLSArr = response.data.message
+
+    dogImageURLSArr.forEach(URL => {
+      const dogCard = dogCardMaker({imageURL: URL, breed: 'mastiff'})
+      entryPoint.appendChild(dogCard)
+    })
   })
-  .then(dogCard => {
-    entryPoint.appendChild(dogCard)
-  })
-  .catch(error => console.log(error.message))
-  .finally(() => console.log('done'))
+  
+.catch(err => {
+  debugger
+})
 
+// // 👉 (OPTIONAL) TASK 6- Wrap the fetching operation inside a function `getDogs`
+// // that takes a breed and a count (of dogs)
+// function getDogs(breed, count) {
+//   axios.get(`https://dog.ceo/api/breed/${breed}/images/random/${count}`)
+//   .then(res => {
+//     res.data.message.forEach(imageURL => {
+//       const dogCard = dogCardMaker({imageURL, breed})
+//       entryPoint.appendChild(dogCard)
+//     })
+//   })
+//   .catch(err => {
+//     console.log(err)
+//   })
+//   .finally(() => {
+//     console.log('done')
+//   }
+//   )}
+// // getDogs('mastiff', 4)
+// // 👉 (OPTIONAL) TASK 7- Put a button in index.html to 'get dogs' and add a click
+// // event listener that executes `getDogs`
+// const getDogsButton = document.createElement('button')
+// // getDogsButton.onclick = (event) => {
+// //   getDogs('mastiff, 3')
+// //   getDogs('australian, 3')
 
-// 👉 (OPTIONAL) TASK 6- Wrap the fetching operation inside a function `getDogs`
-// that takes a breed and a count (of dogs)
+// getDogsButton('mastiff', 3)
+// entryPoint.appendChild(getDogsButton)
 
-
-// 👉 (OPTIONAL) TASK 7- Put a button in index.html to 'get dogs' and add a click
-// event listener that executes `getDogs`
-
-
-// 👉 (OPTIONAL) TASK 8- Import the breeds from `breeds.js`
-// or request them from https://lambda-times-api.herokuapp.com/breeds
-// and loop over them, fetching a dog at each iteration
+// getDogsButton.textContent = 'Get Dogs'
+// entryPoint.appendChild(getDogsButton)
+// // 👉 (OPTIONAL) TASK 8- Import the breeds from `breeds.js`
+// // or request them from https://lambda-times-api.herokuapp.com/breeds
+// // and loop over them, fetching a dog at each iteration
+// [
+//   'mastiff',
+//   'affenpinscher',
+//   'australian',
+//   'mexicanhairless',
+//   'cocker'].forEach(dog => {
+//   getDogs({ dog, count})
+// })
