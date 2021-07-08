@@ -94,7 +94,7 @@ function dogCardMaker({ imageURL, breed }) {
 //    * IN ANY CASE: log "done" to the console
 
 //>>>>>>>>>>>>>>>>>>>>>>>gives three dog cards>>>>>>>>>>>>>>>>>>>>>>>>>>
-axios.get(`https://dog.ceo/api/breed/mastiff/images/randomMMMMMMM/3`)
+axios.get(`https://dog.ceo/api/breed/mastiff/images/random/3`)
   .then(response => {
     //ONLY PLACE WHERE WE HAVE ACCESS TO THE IMAGE URLS FROM ENDPOINT
     //ONLY PLACE WHERE WE HAVE ACCESS TO THE IMAGE URLS FROM ENDPOINT
@@ -111,7 +111,6 @@ axios.get(`https://dog.ceo/api/breed/mastiff/images/randomMMMMMMM/3`)
   })
   
 .catch(err => {
-  console.log(err)
   debugger
 })
 //>>>>>>>>>>>>>>>>>>>>>>>gives three dog cards>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -119,24 +118,28 @@ axios.get(`https://dog.ceo/api/breed/mastiff/images/randomMMMMMMM/3`)
 
 // // 👉 (OPTIONAL) TASK 6- Wrap the fetching operation inside a function `getDogs`
 // // that takes a breed and a count (of dogs)
-// function getDogs(breed, count) {
-//   axios.get(`https://dog.ceo/api/breed/${breed}/images/random/${count}`)
-//   .then(res => {
-//     res.data.message.forEach(imageURL => {
-//       const dogCard = dogCardMaker({imageURL, breed})
-//       entryPoint.appendChild(dogCard)
-//     })
-//   })
-//   .catch(err => {
-//     console.log(err)
-//   })
-//   .finally(() => {
-//     console.log('done')
-//   }
-//   )}
-// // getDogs('mastiff', 4)
+function getDogs(breed, count) {
+  axios.get(`https://dog.ceo/api/breed/${breed}/images/random/${count}`)
+  .then(res => {
+    res.data.message.forEach(imageURL => {
+      const dogCard = dogCardMaker({imageURL, breed})
+      entryPoint.appendChild(dogCard)
+    })
+  })
+  .catch(err => {
+    console.log(err)
+  })
+  .finally(() => {
+    console.log('done')
+  }
+  )}
+getDogs('mastiff', 4)
+
+
 // // 👉 (OPTIONAL) TASK 7- Put a button in index.html to 'get dogs' and add a click
 // // event listener that executes `getDogs`
+
+
 // const getDogsButton = document.createElement('button')
 // // getDogsButton.onclick = (event) => {
 // //   getDogs('mastiff, 3')
