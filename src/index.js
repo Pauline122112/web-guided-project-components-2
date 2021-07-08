@@ -1,7 +1,7 @@
 // Imports at the top of the file!
 // We never nest imports inside blocks of code!
 import axios from 'axios'
-import { breeds } from './breeds'
+import { breeds }from './breeds'
 
 // WE SELDOM DO THE FOLLOWING
 // WE SELDOM DO THE FOLLOWING
@@ -140,24 +140,23 @@ getDogs('mastiff', 4)
 // // event listener that executes `getDogs`
 
 
-// const getDogsButton = document.createElement('button')
-// // getDogsButton.onclick = (event) => {
-// //   getDogs('mastiff, 3')
-// //   getDogs('australian, 3')
+const getDogsButton = document.createElement('button')
+// getDogsButton.onclick = (event) => {
+//   getDogs('mastiff, 3')
+//   getDogs('australian, 3')
+// }
+getDogsButton.addEventListener('click', () => {
+  getDogs('mastiff', 3)
+  getDogs('australian', 3)
+})
+getDogsButton.textContent = 'Get Dogs'
+entryPoint.appendChild(getDogsButton)
 
-// getDogsButton('mastiff', 3)
-// entryPoint.appendChild(getDogsButton)
 
-// getDogsButton.textContent = 'Get Dogs'
-// entryPoint.appendChild(getDogsButton)
+
 // // 👉 (OPTIONAL) TASK 8- Import the breeds from `breeds.js`
 // // or request them from https://lambda-times-api.herokuapp.com/breeds
 // // and loop over them, fetching a dog at each iteration
-// [
-//   'mastiff',
-//   'affenpinscher',
-//   'australian',
-//   'mexicanhairless',
-//   'cocker'].forEach(dog => {
-//   getDogs({ dog, count})
-// })
+breeds.forEach(dog => {
+  getDogs( dog, 3)
+})
